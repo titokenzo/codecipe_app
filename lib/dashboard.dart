@@ -1,3 +1,4 @@
+import 'package:codecipe/chuvas.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:typicons_flutter/typicons.dart';
@@ -8,94 +9,103 @@ import 'package:codecipe/widgets/custom_bottom_bar.dart';
 
 class Dashboard extends StatelessWidget {
   var cryptoData = CryptoData.getData;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        //Scaffold widget, de MaterialApp, provê app bar, title e body
         home: Scaffold(
             appBar: CustomAppBar(),
             body: Container(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(
+                    child: ListView.builder(
 // scrollDirection: Axis.horizontal,
-                itemCount: cryptoData.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    height: 220,
-                    width: double.maxFinite,
-                    child: Card(
-                      elevation: 5,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            top: BorderSide(
-                                width: 2.0,
-                                color: cryptoData[index]['iconColor']),
-                          ),
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(7),
-                          child: Stack(children: <Widget>[
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Stack(
-                                children: <Widget>[
-                                  Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, top: 5),
-                                      child: Column(
-                                        children: <Widget>[
-                                          Row(
-                                            children: <Widget>[
-                                              cryptoIcon(cryptoData[index]),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              cryptoNameSymbol(
-                                                  cryptoData[index]),
-                                              Spacer(),
-                                              cryptoChange(cryptoData[index]),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              changeIcon(cryptoData[index]),
-                                              SizedBox(
-                                                width: 20,
-                                              )
-                                            ],
-                                          ),
-                                          Row(
-                                            children: <Widget>[
-                                              cryptoAmount(cryptoData[index])
-                                            ],
-                                          )
-                                        ],
-                                      ))
-                                ],
+                        itemCount: cryptoData.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                            height: 100,
+                            width: double.maxFinite,
+                            child: Card(
+                              elevation: 5,
+                              child: new InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Chuvas()),
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      top: BorderSide(
+                                          width: 2.0,
+                                          color: cryptoData[index]
+                                              ['iconColor']),
+                                    ),
+                                    color: Colors.white,
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(7),
+                                    child: Stack(children: <Widget>[
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Stack(
+                                          children: <Widget>[
+                                            Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 5, top: 5),
+                                                child: Column(
+                                                  children: <Widget>[
+                                                    Row(
+                                                      children: <Widget>[
+                                                        cryptoIcon(
+                                                            cryptoData[index]),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        cryptoNameSymbol(
+                                                            cryptoData[index]),
+                                                        Spacer(),
+                                                        cryptoChange(
+                                                            cryptoData[index]),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        changeIcon(
+                                                            cryptoData[index]),
+                                                        SizedBox(
+                                                          width: 20,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ))
+                                          ],
+                                        ),
+                                      )
+                                    ]),
+                                  ),
+                                ),
                               ),
-                            )
-                          ]),
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-          ),
-        ],
-      ),
-    ),
-            bottomNavigationBar: CustomBottomBar()
-    ));
+                            ),
+                          );
+                        }),
+                  ),
+                ],
+              ),
+            ),
+            bottomNavigationBar: CustomBottomBar()));
   }
 
   Widget cryptoIcon(data) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15.0),
+      padding: const EdgeInsets.only(left: 10.0),
       child: Align(
           alignment: Alignment.centerLeft,
           child: Icon(
@@ -163,38 +173,4 @@ class Dashboard extends StatelessWidget {
                 size: 30,
               ));
   }
-
-  Widget cryptoAmount(data) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 20.0),
-        child: Row(
-          children: <Widget>[
-            RichText(
-              textAlign: TextAlign.left,
-              text: TextSpan(
-                text: '\n${data['value']}',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 35,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                      text: '\n0.1349',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold)),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-  
-
 }

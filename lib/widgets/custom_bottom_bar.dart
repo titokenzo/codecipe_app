@@ -1,3 +1,4 @@
+import 'package:codecipe/mapa.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:typicons_flutter/typicons.dart';
@@ -27,7 +28,12 @@ class CustomBottomBar extends StatelessWidget {
             iconSize: 30.0,
             padding: EdgeInsets.only(left: 28.0),
             icon: Icon(Icons.explore),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyMapa()),
+              );
+            },
           ),
           IconButton(
             iconSize: 30.0,

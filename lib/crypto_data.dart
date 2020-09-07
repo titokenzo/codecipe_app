@@ -12,7 +12,7 @@ class CryptoData {
       'change': '+3.67%',
       'changeValue': '+202.835',
       'changeColor': Colors.green,
-      'value': '\$12.279',
+      'value': '12.279',
     },
     {
       'name': 'Jaboatão',
@@ -22,7 +22,7 @@ class CryptoData {
       'change': '+5.2%',
       'changeValue': '25.567',
       'changeColor': Colors.green,
-      'value': '\$7.809'
+      'value': '7.809'
     },
     {
       'name': 'Olinda',
@@ -32,7 +32,7 @@ class CryptoData {
       'change': '+6.18%',
       'changeValue': '23.879',
       'changeColor': Colors.green,
-      'value': '\$8.91'
+      'value': '8.91'
     },
   ];
 }
