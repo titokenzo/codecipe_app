@@ -1,3 +1,4 @@
+import 'package:codecipe/chuvas.dart';
 import 'package:codecipe/mapa.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,12 @@ class CustomBottomBar extends StatelessWidget {
             iconSize: 30.0,
             padding: EdgeInsets.only(left: 28.0),
             icon: Icon(Typicons.arrow_shuffle),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Chuvas()),
+              );
+            },
           ),
           IconButton(
             iconSize: 30.0,

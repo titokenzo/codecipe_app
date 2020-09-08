@@ -11,24 +11,25 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   //constructor
   CustomAppBar(
       {this.title = 'Dashboard',
-        this.icon = Icons.menu,
-        this.bottomBar = true});
+      this.icon = Icons.menu,
+      this.bottomBar = true});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Colors.blue,
       title: Text(
         title,
         style: TextStyle(color: Colors.black),
       ),
       leading: IconButton(
-        onPressed: (){},
+        onPressed: () {},
         icon: Icon(icon),
         color: Colors.black,
       ),
       actions: <Widget>[
         IconButton(
-          onPressed: (){},
+          onPressed: () {},
           color: Color(0xFFE7EAED),
           icon: Icon(
             Icons.settings,
@@ -36,21 +37,17 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           ),
         ),
       ],
-
       bottom: PreferredSize(
           child: Column(
-            children: <Widget>[
-              bottomBar == true
-                  ? moneyValues()
-                  : SizedBox(
-                height: 20,
-              )
-            ],
-          )),
-
-      backgroundColor: Colors.white,
+        children: <Widget>[
+          bottomBar == true
+              ? moneyValues()
+              : SizedBox(
+                  height: 20,
+                )
+        ],
+      )),
       elevation: 5,
-
     );
   }
 
@@ -62,50 +59,52 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         FlatButton(
-          onPressed: (){},
-          color: Color(0xFFE7EAED),
+          onPressed: () {},
+          //color: Color(0xFFE7EAED),
           child: RichText(
             text: TextSpan(
-                text: '\5.9',
-                style:
-                TextStyle(fontWeight: FontWeight.bold, color: Colors.black,),
+                text: '5.9',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
                 children: [
                   TextSpan(
                       text: '\n30 Dias',
                       style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.bold))
+                          color: Colors.black45, fontWeight: FontWeight.bold))
                 ]),
           ),
         ),
         FlatButton(
-          onPressed: (){},
-          color: Color(0xFFE7EAED),
+          onPressed: () {},
+          //color: Color(0xFFE7EAED),
           child: RichText(
             text: TextSpan(
                 text: '1.2',
                 style:
-                TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
                 children: [
                   TextSpan(
                       text: '\n24 horas',
                       style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.bold))
+                          color: Colors.black45, fontWeight: FontWeight.bold))
                 ]),
           ),
         ),
         FlatButton(
-          onPressed: (){},
-          color: Color(0xFFE7EAED),
+          onPressed: () {},
+          //color: Color(0xFFE7EAED),
           child: RichText(
             text: TextSpan(
                 text: '0.8',
                 style:
-                TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
                 children: [
                   TextSpan(
                       text: '\nHoje',
                       style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.bold))
+                          color: Colors.black45, fontWeight: FontWeight.bold))
                 ]),
           ),
         )
