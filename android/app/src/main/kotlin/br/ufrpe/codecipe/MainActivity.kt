@@ -1,4 +1,4 @@
-package br.pe.codecipe
+package br.ufrpe.codecipe
 
 import io.flutter.embedding.android.FlutterActivity
 

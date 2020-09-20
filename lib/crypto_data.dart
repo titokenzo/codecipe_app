@@ -1,4 +1,4 @@
-import 'package:crypto_font_icons/crypto_font_icons.dart';
+//import 'package:crypto_font_icons/crypto_font_icons.dart';
 import 'package:flutter_weather_icons/flutter_weather_icons.dart';
 import 'package:flutter/material.dart';
 

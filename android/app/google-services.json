@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "789287832465",
+    "firebase_url": "https://my-project-ufrpe.firebaseio.com",
+    "project_id": "my-project-ufrpe",
+    "storage_bucket": "my-project-ufrpe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789287832465:android:4204586fe4230625c1a830",
+        "android_client_info": {
+          "package_name": "br.ufrpe.codecipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789287832465-3q2hu3lq48cvq7c53sk7aq9vscsf2s48.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWeuhu7QCbTQlqaVkkNIJOjHoOvrkLRCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789287832465-3q2hu3lq48cvq7c53sk7aq9vscsf2s48.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

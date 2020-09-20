@@ -1,9 +1,9 @@
 import 'package:codecipe/chuvas_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:typicons_flutter/typicons.dart';
+//import 'package:typicons_flutter/typicons.dart';
 
-import 'crypto_data.dart';
+//import 'crypto_data.dart';
 import 'package:codecipe/widgets/custom_app_bar.dart';
 import 'package:codecipe/widgets/custom_bottom_bar.dart';
 
