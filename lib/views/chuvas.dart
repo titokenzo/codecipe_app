@@ -1,4 +1,4 @@
-import 'package:codecipe/chuvas_data.dart';
+import 'file:///D:/Projetos/Flutter/codecipe/lib/data/chuvas_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:typicons_flutter/typicons.dart';
