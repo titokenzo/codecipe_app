@@ -1,90 +1,150 @@
+import 'package:codecipe_app/views/dashboard.dart';
 import 'package:flutter/material.dart';
-import 'file:///D:/Projetos/Flutter/codecipe/lib/views/dashboard.dart';
+import '../login_api.dart';
 
-class Login extends StatefulWidget {
-  Login({Key key, this.title}) : super(key: key);
-  final String title;
 
-  @override
-  _LoginState createState() => _LoginState();
-}
+class Login extends StatelessWidget {
 
-class _LoginState extends State<Login> {
-  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  final _ctrlLogin = TextEditingController();
+  final _ctrlSenha = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final emailField = TextField(
-      obscureText: false,
-      style: style,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Email",
-          border:
-          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-    );
-    final passwordField = TextField(
-      obscureText: true,
-      style: style,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Password",
-          border:
-          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-    );
-    final loginButon = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color: Color(0xff01A0C7),
-      child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Dashboard()),
-          );
-        },
-        child: Text("Login",
-            textAlign: TextAlign.center,
-            style: style.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
-      ),
-    );
 
     return Scaffold(
-      body: Center(
-        child: Container(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(36.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: 155.0,
-                  child: Image.asset(
-                    "assets/codecipe_logo.png",
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                SizedBox(height: 45.0),
-                emailField,
-                SizedBox(height: 25.0),
-                passwordField,
-                SizedBox(
-                  height: 35.0,
-                ),
-                loginButon,
-                SizedBox(
-                  height: 15.0,
-                ),
-              ],
+      body: _body(context),
+    );
+  }
+
+  _body(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Container(
+        padding: EdgeInsets.all(15),
+        child: ListView(
+          children: <Widget>[
+            SizedBox(
+              height: 155.0,
+              child: Image.asset(
+                "assets/codecipe_logo.png",
+                fit: BoxFit.contain,
+              ),
             ),
-          ),
+            TextFormField(
+              controller: _ctrlLogin,
+              validator: (value){
+                if(value.isEmpty){
+                  return "Digite o Login";
+                }
+                if(value.length<3){
+                  return "O campo precisa ter mais de 3 caracteres";
+                }
+                return null;
+              },
+              obscureText: false,
+              style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 20.0
+              ),
+              decoration: InputDecoration(
+                labelText: "Login",
+                hintText: "Digite o login",
+                contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(32.0)
+                )
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              controller: _ctrlSenha,
+              validator: (value){
+                if(value.isEmpty){
+                  return "Digite a Senha";
+                }
+                return null;
+              },
+              obscureText: true,
+              style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 20.0
+              ),
+              decoration: InputDecoration(
+                  labelText: "Senha",
+                  hintText: "Digite a Senha",
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32.0)
+                  )
+              ),
+            ),
+            SizedBox(height: 10,),
+            RaisedButton(
+              color: Colors.orange,
+              child: Text(
+                "login",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+              onPressed: (){
+                _clickButton(context);
+              },
+            ),
+          ],
         ),
       ),
+    );
+  }
+
+  _clickButton(BuildContext context) async {
+    bool formOk = _formKey.currentState.validate();
+    if (!formOk) {
+      return;
+    }
+    String login = _ctrlLogin.text;
+    String senha = _ctrlSenha.text;
+    var response = await LoginApi.login(login,senha);
+    if(response){
+      _navegaHomepage(context);
+    } else{
+      _showAlertDialog1(context);
+    }
+  }
+  _navegaHomepage(BuildContext context){
+    Navigator.push(
+      context, MaterialPageRoute(
+        builder : (context)=> Dashboard()),
+    );
+  }
+
+  _showAlertDialog1(BuildContext context) {
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    AlertDialog alerta = AlertDialog(
+      title: Text(
+        "ATENÇÃO",
+      ),
+      content: Text(
+          "Usuário/Senha inválido."
+      ),
+      actions: [
+        okButton,
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alerta;
+      },
     );
   }
 }

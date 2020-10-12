@@ -1,20 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.ufrpe.codecipe">
+          package="com.example.codecipe_app">
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
          In most cases you can leave this as-is, but you if you want to provide
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="codecipe"
+        android:label="codecipe_app"
         android:icon="@mipmap/ic_launcher">
-
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR KEY HERE"/>
-
         <activity
-            android:name="br.ufrpe.codecipe.MainActivity"
+            android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

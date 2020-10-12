@@ -1,5 +1,4 @@
-import 'package:codecipe/model/municipio.dart';
-import 'package:flutter/material.dart';
+import 'package:codecipe_app/model/municipio.dart';
 
 class Local {
   final String id;

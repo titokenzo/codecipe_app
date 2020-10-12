@@ -1,4 +1,4 @@
-import 'package:codecipe/model/user.dart';
+import 'package:codecipe_app/model/user.dart';
 
 const DUMMY_USERS = {
   '1': const User(

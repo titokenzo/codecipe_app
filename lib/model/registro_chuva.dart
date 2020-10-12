@@ -1,4 +1,4 @@
-import 'package:codecipe/model/local.dart';
+import 'package:codecipe_app/model/local.dart';
 
 class RegistroChuva {
   final Local local;

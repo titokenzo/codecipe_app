@@ -1,19 +1,41 @@
-import 'file:///D:/Projetos/Flutter/codecipe/lib/views/chuvas.dart';
+import 'package:codecipe_app/views/chuvas.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:typicons_flutter/typicons.dart';
+import 'package:codecipe_app/data/crypto_data.dart';
+import 'package:codecipe_app/widgets/custom_app_bar.dart';
+import 'package:codecipe_app/widgets/custom_bottom_bar.dart';
 
-import '../data/crypto_data.dart';
-import 'package:codecipe/widgets/custom_app_bar.dart';
-import 'package:codecipe/widgets/custom_bottom_bar.dart';
 
-class Dashboard extends StatelessWidget {
-  var cryptoData = CryptoData.getData;
+// ignore: must_be_immutable
+class Dashboard extends StatefulWidget {
+  @override
+  _DashboardState createState() => _DashboardState();
+}
 
+class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
+    print("build");
+    return Container(
+      child: FutureBuilder(
+        future: CryptoData.acessaApi(),
+        builder: (ctx,snap){
+          if (!snap.hasData)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          return pagina(context,snap.data);
+        },
+      ),
+    );
+  }
+
+  Widget pagina(BuildContext context,List<Map<String,dynamic>> cryptoData) {
+    print("Dashboard");
+    print(cryptoData[0]);
     return MaterialApp(
-        //Scaffold widget, de MaterialApp, provê app bar, title e body
+      //Scaffold widget, de MaterialApp, provê app bar, title e body
         home: Scaffold(
             appBar: CustomAppBar(),
             body: Container(
@@ -23,7 +45,6 @@ class Dashboard extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: ListView.builder(
-// scrollDirection: Axis.horizontal,
                         itemCount: cryptoData.length,
                         itemBuilder: (context, index) {
                           return Container(
@@ -45,8 +66,7 @@ class Dashboard extends StatelessWidget {
                                     border: Border(
                                       top: BorderSide(
                                           width: 2.0,
-                                          color: cryptoData[index]
-                                              ['iconColor']),
+                                          ),
                                     ),
                                     color: Colors.white,
                                   ),
@@ -109,8 +129,8 @@ class Dashboard extends StatelessWidget {
       child: Align(
           alignment: Alignment.centerLeft,
           child: Icon(
-            data['icon'],
-            color: data['iconColor'],
+            data["icon"],
+            color: data["iconColor"],
             size: 40,
           )),
     );
@@ -126,7 +146,7 @@ class Dashboard extends StatelessWidget {
               fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
           children: <TextSpan>[
             TextSpan(
-                text: '\n${data['symbol']}',
+                text: '\n${data['symbol']}}',
                 style: TextStyle(
                     color: Colors.grey,
                     fontSize: 15,
@@ -142,14 +162,14 @@ class Dashboard extends StatelessWidget {
       alignment: Alignment.topRight,
       child: RichText(
         text: TextSpan(
-          text: '${data['change']}',
+          text: 'Acum30: ${data['dia30']}',
           style: TextStyle(
               fontWeight: FontWeight.bold, color: Colors.green, fontSize: 20),
           children: <TextSpan>[
             TextSpan(
-                text: '\n${data['changeValue']}',
+                text: '\nOntem: ${data['ontem']}',
                 style: TextStyle(
-                    color: data['changeColor'],
+                    color: Colors.red,
                     fontSize: 15,
                     fontWeight: FontWeight.bold)),
           ],
@@ -161,16 +181,16 @@ class Dashboard extends StatelessWidget {
   Widget changeIcon(data) {
     return Align(
         alignment: Alignment.topRight,
-        child: data['change'].contains('-')
+        child: "----".contains('-')
             ? Icon(
-                Typicons.arrow_sorted_down,
-                color: data['changeColor'],
-                size: 30,
-              )
+          Typicons.arrow_sorted_down,
+          color: Colors.amberAccent,
+          size: 30,
+        )
             : Icon(
-                Typicons.arrow_sorted_up,
-                color: data['changeColor'],
-                size: 30,
-              ));
+          Typicons.arrow_sorted_up,
+          color: Colors.purple,
+          size: 30,
+        ));
   }
 }

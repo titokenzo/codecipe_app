@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-//import 'package:codecipe/dashboard.dart';
-
+// ignore: must_be_immutable
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   String title;
   IconData icon;
@@ -38,21 +37,22 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         ),
       ],
       bottom: PreferredSize(
+          preferredSize: Size.infinite,
           child: Column(
-        children: <Widget>[
-          bottomBar == true
-              ? moneyValues()
-              : SizedBox(
+            children: <Widget>[
+              if (bottomBar == true)
+                moneyValues()
+              else
+                SizedBox(
                   height: 20,
                 )
-        ],
-      )),
+            ],
+          )),
       elevation: 5,
     );
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => Size.fromHeight(100.0);
   Widget moneyValues() {
     return Row(

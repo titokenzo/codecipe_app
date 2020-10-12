@@ -1,6 +1,6 @@
-# codecipe
+# codecipe_app
 
-CODECIPE mobile application
+A new Flutter project.
 
 ## Getting Started
 

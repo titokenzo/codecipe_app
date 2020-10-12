@@ -1,5 +1,5 @@
-import 'file:///D:/Projetos/Flutter/codecipe/lib/views/chuvas.dart';
-import 'file:///D:/Projetos/Flutter/codecipe/lib/views/mapa.dart';
+import 'package:codecipe_app/views/chuvas.dart';
+import 'package:codecipe_app/views/mapa.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:typicons_flutter/typicons.dart';

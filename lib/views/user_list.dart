@@ -1,4 +1,4 @@
-import 'package:codecipe/data/dummy_users.dart';
+import 'package:codecipe_app/data/dummy_users.dart';
 import 'package:flutter/material.dart';
 
 class UserList extends StatelessWidget{

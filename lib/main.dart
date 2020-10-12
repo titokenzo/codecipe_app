@@ -1,4 +1,4 @@
-import 'package:codecipe/views/login.dart';
+import 'package:codecipe_app/views/login.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());

@@ -1,4 +1,4 @@
-import 'package:codecipe/model/mesoregiao.dart';
+import 'package:codecipe_app/model/mesoregiao.dart';
 
 class Municipio {
   final String nome;
